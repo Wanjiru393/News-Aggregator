@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>News Headlines</title>
+</head>
+<body>
+	{% if object_list %}
+		{% for headline in object_list %}
+			<h2><a href="{{ headline.url }}">{{ headline.title }}</a></h2>
+			<p>{{ headline.date_published }} | {{ headline.category }} | {{ headline.author }} | {{ headline.source }}</p>
+			{% if headline.image %}
+				<img src="{{ headline.image }}" alt="{{ headline.title }}">
+			{% endif %}
+			<p>{{ headline.content }}</p>
+			<hr>
+		{% endfor %}
+	{% else %}
+		<p>No headlines found.</p>
+	{% endif %}
+</body>
+</html>

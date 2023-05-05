@@ -8,7 +8,7 @@ def scrape(request):
     session = requests.Session()
     #headers are used by our function to request the webpage, acting like a normal
     #http client to the news site.
-    
+
     session.headers = {"User-Agent": "Googlebot/2.1 (+http://www.google.com/bot.html)"}
 
 
@@ -46,3 +46,11 @@ def scrape(request):
         new_headline.save()
     
     return redirect("../")
+
+
+def news_list(request):
+    headlines = Headline.objects.all()[::-1]
+    context = {
+        'object_list': headlines,
+    }
+    return render(request, "index.html", context)
